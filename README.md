@@ -21,6 +21,7 @@ Then you can run binary
 **Dependencies:**
 
 -   [GLFW](https://www.glfw.org/) - Open Source, multi-platform library for OpenGL, OpenGL ES and Vulkan development on the desktop.
+-   [GLAD](https://github.com/Dav1dde/glad) - library that loads pointers to OpenGL functions at runtime, core as well as extensions.
 
 Dev dependencies:
 
