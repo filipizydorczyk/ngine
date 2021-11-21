@@ -17,10 +17,6 @@ CPM_modules
 !CPM.cmake
 !LICENCE
 
-# VS CODE
-
-.vscode
-
 # Artefacts
 
 build
