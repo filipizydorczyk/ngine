@@ -1,13 +1,10 @@
 cmake_minimum_required(VERSION 3.9)
 
-
 project(ngine VERSION 0.0.1 DESCRIPTION "For now it is nothing more than opengl playground xD")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/../build)
 include(${PROJECT_BINARY_DIR}/CPM.cmake)
 
-#add_compile_definitions(GLFW_INCLUDE_NONE)
 add_executable(${PROJECT_NAME} ${PROJECT_BINARY_DIR}/../src/main.cpp)
-#find_package(OpenGL REQUIRED)
 CPMAddPackage(
   NAME GLFW
   GITHUB_REPOSITORY glfw/glfw
@@ -27,8 +24,4 @@ CPMAddPackage(
   GIT_TAG v0.1.34
 )
 target_include_directories(${PROJECT_NAME} PUBLIC ${GLAD_SOURCE_DIR}/include)
-
-message(STATUS "foo include dir: ${GLAD_POPULATED}")
-
-
 target_link_libraries(${PROJECT_NAME} glfw glad)
