@@ -10,12 +10,12 @@ cmake_install.cmake
 install_manifest.txt
 compile_commands.json
 cmake/*
-!CPM.cmake
-!LICENCE
 
 # CPM
 cpm-package-lock.cmake
 CPM_modules
+!CPM.cmake
+!LICENCE
 
 # VS CODE
 
