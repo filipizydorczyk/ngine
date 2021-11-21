@@ -1,3 +1,4 @@
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 int main(void)
@@ -15,6 +16,8 @@ int main(void)
     }
 
     glfwMakeContextCurrent(window);
+
+    gladLoadGL();
 
     while (!glfwWindowShouldClose(window))
     {
