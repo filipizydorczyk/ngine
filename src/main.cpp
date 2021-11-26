@@ -25,6 +25,10 @@ int main(void)
 
     gladLoadGL();
 
+    glfwSetWindowSizeCallback(window, [](GLFWwindow* window, int width, int height){
+        NGINE_INFO("{0}, {1}", width, height);
+    });
+
     while (!glfwWindowShouldClose(window))
     {
         glClear(GL_COLOR_BUFFER_BIT);
