@@ -10,7 +10,7 @@ int main(void)
     NGINE_WARN("Test warn");
 
     glfwInit();
-    ngine::Window window = ngine::Window({1280,720});
+    NGine::Window window = NGine::Window({1280,720});
     gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
 
     while (!window.shouldClose())

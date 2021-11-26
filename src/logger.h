@@ -1,6 +1,6 @@
 #include "spdlog/spdlog.h"
 
-namespace ngine
+namespace NGine
 {
 #define NGINE_INFO(...) spdlog::info(__VA_ARGS__)
 #define NGINE_WARN(...) spdlog::warn(__VA_ARGS__)

@@ -4,7 +4,7 @@
 #include "./window.h"
 #include "./logger.h"
 
-namespace ngine {
+namespace NGine {
     Window::Window(WindowData data){
         this->init(data);
     }
