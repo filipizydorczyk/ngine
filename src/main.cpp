@@ -1,7 +1,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "spdlog/spdlog.h"
 #include "./logger.h"
+#include "./window.h"
 
 int main(void)
 {
@@ -9,31 +9,13 @@ int main(void)
     NGINE_ERROR("Test error");
     NGINE_WARN("Test warn");
 
-    GLFWwindow *window;
+    glfwInit();
+    ngine::Window window = ngine::Window({1280,720});
+    gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
 
-    if (!glfwInit())
-        return -1;
-
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-    if (!window)
-    {
-        glfwTerminate();
-        return -1;
-    }
-
-    glfwMakeContextCurrent(window);
-
-    gladLoadGL();
-
-    glfwSetWindowSizeCallback(window, [](GLFWwindow* window, int width, int height){
-        NGINE_INFO("{0}, {1}", width, height);
-        glViewport(0,0,width,height);
-    });
-
-    while (!glfwWindowShouldClose(window))
+    while (!window.shouldClose())
     {
         glClear(GL_COLOR_BUFFER_BIT);
-
         glBegin(GL_TRIANGLES);
 
         glVertex2f(-0.5f, -0.5f);
@@ -41,11 +23,10 @@ int main(void)
         glVertex2f(0.5f, -0.5f);
 
         glEnd();
-
-        glfwSwapBuffers(window);
+        window.update();
         glfwPollEvents();
     }
 
-    glfwTerminate();
+    window.close();
     return 0;
 }
