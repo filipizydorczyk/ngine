@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.9)
 project(ngine VERSION 0.0.1 DESCRIPTION "For now it is nothing more than opengl playground xD")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/../build)
 include(${PROJECT_BINARY_DIR}/CPM.cmake)
+include_directories(${PROJECT_BINARY_DIR}/../src)
 set(FETCHCONTENT_BASE_DIR ${PROJECT_BINARY_DIR}/../include)
 
 add_executable(${PROJECT_NAME} ${PROJECT_BINARY_DIR}/../src/main.cpp)
@@ -18,11 +19,17 @@ CPMAddPackage(
     "GLFW_BUILD_EXAMPLES OFF"
     "GLFW_BUILD_TESTS OFF"
 )
-
 CPMAddPackage(
   NAME GLAD
   GITHUB_REPOSITORY Dav1dde/glad 
   GIT_TAG v0.1.34
 )
 target_include_directories(${PROJECT_NAME} PUBLIC ${GLAD_SOURCE_DIR}/include)
-target_link_libraries(${PROJECT_NAME} glfw glad)
+CPMAddPackage(
+  NAME SPDLOG
+  GITHUB_REPOSITORY gabime/spdlog 
+  GIT_TAG v1.9.2
+)
+target_include_directories(${PROJECT_NAME} PUBLIC ${SPDLOG_SOURCE_DIR}/include)
+
+target_link_libraries(${PROJECT_NAME} glfw glad spdlog)

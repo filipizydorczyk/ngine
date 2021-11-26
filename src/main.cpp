@@ -1,8 +1,14 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "spdlog/spdlog.h"
+#include "./logger.h"
 
 int main(void)
 {
+    NGINE_INFO("Test info");
+    NGINE_ERROR("Test error");
+    NGINE_WARN("Test warn");
+
     GLFWwindow *window;
 
     if (!glfwInit())
