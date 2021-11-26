@@ -27,6 +27,7 @@ int main(void)
 
     glfwSetWindowSizeCallback(window, [](GLFWwindow* window, int width, int height){
         NGINE_INFO("{0}, {1}", width, height);
+        glViewport(0,0,width,height);
     });
 
     while (!glfwWindowShouldClose(window))
