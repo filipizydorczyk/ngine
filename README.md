@@ -32,8 +32,8 @@ Naming convention should follow this rules:
 
 2. Use **lowercase** for:
 
--   variables names (for example `m_AppWidnow`)
--   class and structs member names
+-   variables names
+-   class and structs member names (for example `m_AppWidnow`)
 
 3. Use **UPPERCASE** for all macros and defines
 
