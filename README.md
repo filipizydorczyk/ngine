@@ -16,6 +16,29 @@ Then you can run binary
 /build/ngine
 ```
 
+# Code conduct
+
+At the moment I am going to write this as object oriented as possible in resonable way. If there is really no point in making a class just define this as static method or define namespace (or use existing one) in which functions from a certain category will be stored.
+
+Naming convention should follow this rules:
+
+1. Use **Captial** letter for following elements:
+
+-   filenames
+-   calss, struct or enum names
+-   class/struct methods
+-   namespace
+-   function names
+
+2. Use **lowercase** for:
+
+-   variables names
+-   class and structs member names
+
+3. Use **UPPERCASE** for all macros and defines
+
+If something is unclear just see files for reference.
+
 ---
 
 **Dependencies:**

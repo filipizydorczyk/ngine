@@ -1,7 +1,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "./logger.h"
-#include "./window.h"
+#include "./Logger.h"
+#include "./Window.h"
 
 int main(void)
 {
@@ -10,10 +10,10 @@ int main(void)
     NGINE_WARN("Test warn");
 
     glfwInit();
-    NGine::Window window = NGine::Window({1280,720});
-    gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
+    NGine::Window window = NGine::Window({1280, 720});
+    gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 
-    while (!window.shouldClose())
+    while (!window.ShouldClose())
     {
         glClear(GL_COLOR_BUFFER_BIT);
         glBegin(GL_TRIANGLES);
@@ -23,10 +23,10 @@ int main(void)
         glVertex2f(0.5f, -0.5f);
 
         glEnd();
-        window.update();
+        window.Update();
         glfwPollEvents();
     }
 
-    window.close();
+    window.Close();
     return 0;
 }

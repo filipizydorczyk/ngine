@@ -1,24 +1,24 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "spdlog/spdlog.h"
-#include "./window.h"
-#include "./logger.h"
+#include "./Window.h"
+#include "./Logger.h"
 
 namespace NGine
 {
     Window::Window(WindowData data)
     {
-        this->init(data);
+        this->Init(data);
     }
 
     Window::~Window() {}
 
-    void Window::init(WindowData data)
+    void Window::Init(WindowData data)
     {
         this->m_WindowData = data;
         this->m_Window = glfwCreateWindow(this->m_WindowData.width, this->m_WindowData.height, "Hello World", NULL, NULL);
         if (!this->m_Window)
-            this->close();
+            this->Close();
 
         glfwMakeContextCurrent(this->m_Window);
 
@@ -29,17 +29,17 @@ namespace NGine
         });
     }
 
-    bool Window::shouldClose()
+    bool Window::ShouldClose()
     {
         return glfwWindowShouldClose(this->m_Window);
     }
 
-    void Window::update()
+    void Window::Update()
     {
         glfwSwapBuffers(this->m_Window);
     }
 
-    void Window::close()
+    void Window::Close()
     {
         glfwTerminate();
     }
