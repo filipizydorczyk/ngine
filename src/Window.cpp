@@ -11,7 +11,7 @@ namespace NGine
         this->Init(data);
     }
 
-    Window::~Window() {}
+    Window::~Window() = default;
 
     void Window::Init(WindowData data)
     {

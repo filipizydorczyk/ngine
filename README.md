@@ -32,7 +32,7 @@ Naming convention should follow this rules:
 
 2. Use **lowercase** for:
 
--   variables names
+-   variables names (for example `m_AppWidnow`)
 -   class and structs member names
 
 3. Use **UPPERCASE** for all macros and defines
