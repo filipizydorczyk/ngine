@@ -29,7 +29,7 @@ namespace NGine
         });
     }
 
-    bool Window::ShouldClose()
+    bool Window::ShouldClose() const
     {
         return glfwWindowShouldClose(this->m_Window);
     }

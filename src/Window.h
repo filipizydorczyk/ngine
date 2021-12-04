@@ -18,7 +18,7 @@ namespace NGine
         ~Window();
         void Init(WindowData data);
         void Update();
-        bool ShouldClose();
+        bool ShouldClose() const;
         void Close();
 
     private:
