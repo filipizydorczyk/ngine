@@ -6,7 +6,7 @@ include(${PROJECT_BINARY_DIR}/CPM.cmake)
 include_directories(${PROJECT_SOURCE_DIR}/src)
 set(FETCHCONTENT_BASE_DIR ${PROJECT_SOURCE_DIR}/include)
 
-add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src/main.cpp ${PROJECT_SOURCE_DIR}/src/Window.cpp  ${PROJECT_SOURCE_DIR}/src/Application.cpp)
+add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src/main.cpp ${PROJECT_SOURCE_DIR}/src/Window.cpp  ${PROJECT_SOURCE_DIR}/src/Application.cpp ${PROJECT_SOURCE_DIR}/src/Renderer.cpp)
 CPMAddPackage(
   NAME GLFW
   GITHUB_REPOSITORY glfw/glfw
