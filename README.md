@@ -46,6 +46,7 @@ If something is unclear just see files for reference.
 -   [GLFW](https://www.glfw.org/) - Open Source, multi-platform library for OpenGL, OpenGL ES and Vulkan development on the desktop.
 -   [GLAD](https://github.com/Dav1dde/glad) - library that loads pointers to OpenGL functions at runtime, core as well as extensions.
 -   [spdlog](https://github.com/gabime/spdlog) - Very fast, header-only/compiled, C++ logging library
+-   [glm](https://github.com/g-truc/glm) - is a header only C++ mathematics library for graphics software based on the OpenGL Shading Language (GLSL) specifications.
 
 Dev dependencies:
 
