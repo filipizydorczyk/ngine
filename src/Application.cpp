@@ -17,16 +17,16 @@ namespace NGine
     {
         while (!this->m_AppWindow->ShouldClose())
         {
-            Renderer::DrawTriangle(glm::vec2(0.0f, 0.0f), 0.5f, 0.5f);
+            Renderer::DrawTriangle(glm::vec2(0.0f, 0.0f), 0.5f, 1.0f);
             this->m_AppWindow->Update();
             glfwPollEvents();
         }
 
         this->m_AppWindow->Close();
-    }
+    };
 
     void Application::Close()
     {
         this->m_AppWindow->Close();
-    }
+    };
 };

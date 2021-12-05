@@ -9,7 +9,7 @@ namespace NGine
     Window::Window(WindowData data)
     {
         this->Init(data);
-    }
+    };
 
     Window::~Window() = default;
 
@@ -23,24 +23,24 @@ namespace NGine
         glfwMakeContextCurrent(this->m_Window);
 
         /* Registering window events */
-        glfwSetWindowSizeCallback(this->m_Window, [](GLFWwindow *window, int width, int height){
+        glfwSetWindowSizeCallback(this->m_Window, [](GLFWwindow *window, int width, int height)
+                                  {
             NGINE_INFO("{0}, {1}", width, height);
-            glViewport(0,0,width,height); 
-        });
-    }
+            glViewport(0,0,width,height); });
+    };
 
     bool Window::ShouldClose() const
     {
         return glfwWindowShouldClose(this->m_Window);
-    }
+    };
 
     void Window::Update()
     {
         glfwSwapBuffers(this->m_Window);
-    }
+    };
 
     void Window::Close()
     {
         glfwTerminate();
-    }
+    };
 }

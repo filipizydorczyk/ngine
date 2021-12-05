@@ -39,6 +39,20 @@ Naming convention should follow this rules:
 
 If something is unclear just see files for reference.
 
+Always finish method implementations, classes declaration and namespaces with `;`
+
+```c++
+namespace NGine
+{
+    void Application::Close()
+    {
+        this->m_AppWindow->Close();
+    };
+};
+```
+
+Why? Idk it's just my thing and my project xD
+
 ---
 
 **Dependencies:**

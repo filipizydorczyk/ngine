@@ -25,4 +25,4 @@ namespace NGine
         WindowData m_WindowData;
         GLFWwindow *m_Window;
     };
-}
+};

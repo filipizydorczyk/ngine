@@ -5,6 +5,15 @@
 
 namespace NGine
 {
+    /**
+     * This methond will draw a triangle. This is more for testing purposes
+     * at early stage than for actuall usage. Mayby in futere it will be removed
+     * or refactored
+     *
+     * @param position coordinates where center of triangle should be placed
+     * @param base length of triangle base
+     * @param height length of triangle height
+     */
     void Renderer::DrawTriangle(glm::vec2 position, float base, float height)
     {
         glClear(GL_COLOR_BUFFER_BIT);
@@ -16,4 +25,4 @@ namespace NGine
 
         glEnd();
     }
-}
+};
