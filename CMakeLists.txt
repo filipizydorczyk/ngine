@@ -31,5 +31,11 @@ CPMAddPackage(
   GIT_TAG v1.9.2
 )
 target_include_directories(${PROJECT_NAME} PUBLIC ${SPDLOG_SOURCE_DIR}/include)
+CPMAddPackage(
+  NAME GLM
+  GITHUB_REPOSITORY g-truc/glm
+  GIT_TAG 0.9.9.8
+)
+target_include_directories(${PROJECT_NAME} PUBLIC ${GLM_SOURCE_DIR})
 
 target_link_libraries(${PROJECT_NAME} glfw glad)
