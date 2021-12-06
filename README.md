@@ -2,19 +2,11 @@
 
 # Running
 
-On linux just go to cmake dir and create makefile
+In root directory there is a **Makefile** thats let's you call all commands that you typically would have to cd to `cmake` directory first. It works on both windows and linux. If you want to use visual studio instead of makefile just cd to `cmake` directory and generate solution. You need to call all commands in order if you mrun them for the first time:
 
-```sh
-cd cmake
-cmake ..
-make
-```
-
-Then you can run binary
-
-```sh
-/build/ngine
-```
+ - `make init` - calls cmake to generate actual makefile
+ - `make ngine` - builds binary
+ - `make run` - run built binary
 
 # Code conduct
 
