@@ -6,14 +6,14 @@
 
 namespace NGine
 {
-    Window::Window(WindowData data)
+    Window::Window(NGine::Window::WindowData data)
     {
         this->Init(data);
     };
 
     Window::~Window() = default;
 
-    void Window::Init(WindowData data)
+    void Window::Init(NGine::Window::WindowData data)
     {
         this->m_WindowData = data;
         this->m_Window = glfwCreateWindow(this->m_WindowData.width, this->m_WindowData.height, "Hello World", NULL, NULL);

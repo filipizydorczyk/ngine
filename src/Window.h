@@ -5,15 +5,15 @@
 namespace NGine
 {
 
-    struct WindowData
-    {
-        unsigned int width;
-        unsigned int height;
-    };
-
     class Window
     {
     public:
+        struct WindowData
+        {
+            unsigned int width;
+            unsigned int height;
+        };
+
         Window(WindowData data);
         ~Window();
         void Init(WindowData data);
