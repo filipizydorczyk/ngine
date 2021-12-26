@@ -19,6 +19,7 @@ namespace NGine
 
         while (!this->m_AppWindow->ShouldClose())
         {
+            Renderer::Clear();
             Renderer::DrawTriangle();
             this->m_AppWindow->Update();
             glfwPollEvents();

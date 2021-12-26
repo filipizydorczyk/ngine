@@ -55,7 +55,6 @@ namespace NGine
      */
     void Renderer::DrawTriangleLegacy(glm::vec2 position, float base, float height)
     {
-        glClear(GL_COLOR_BUFFER_BIT);
         glBegin(GL_TRIANGLES);
 
         glVertex2f(position.x, position.y + 0.5f * height);
@@ -63,5 +62,12 @@ namespace NGine
         glVertex2f(position.x + 0.5f * base, position.y - 0.5f * height);
 
         glEnd();
+    }
+
+    /**
+     * Just clears the screen from all redered stuff
+     */
+    void Renderer::Clear(){
+        glClear(GL_COLOR_BUFFER_BIT);
     }
 };
