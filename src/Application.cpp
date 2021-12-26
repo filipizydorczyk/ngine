@@ -15,9 +15,11 @@ namespace NGine
 
     void Application::Run()
     {
+        Renderer::Init();
+
         while (!this->m_AppWindow->ShouldClose())
         {
-            Renderer::DrawTriangleLegacy(glm::vec2(0.0f, 0.0f), 0.5f, 1.0f);
+            Renderer::DrawTriangle();
             this->m_AppWindow->Update();
             glfwPollEvents();
         }
