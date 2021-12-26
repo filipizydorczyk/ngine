@@ -14,7 +14,7 @@ namespace NGine
      * @param base length of triangle base
      * @param height length of triangle height
      */
-    void Renderer::DrawTriangle(glm::vec2 position, float base, float height)
+    void Renderer::DrawTriangleLegacy(glm::vec2 position, float base, float height)
     {
         glClear(GL_COLOR_BUFFER_BIT);
         glBegin(GL_TRIANGLES);
