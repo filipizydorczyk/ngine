@@ -31,7 +31,7 @@ namespace NGine
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
         glEnableVertexAttribArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
-    }
+    };
 
     /**
      * This function will draw a simple triangle usign modern opengl api. For now
@@ -42,7 +42,7 @@ namespace NGine
         glBindBuffer(GL_ARRAY_BUFFER, s_RendererData.triangleBuffer);
         glDrawArrays(GL_TRIANGLES, 0, 3);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
-    }
+    };
 
     /**
      * This methond will draw a triangle. This is more for testing purposes
@@ -62,12 +62,12 @@ namespace NGine
         glVertex2f(position.x + 0.5f * base, position.y - 0.5f * height);
 
         glEnd();
-    }
+    };
 
     /**
      * Just clears the screen from all redered stuff
      */
     void Renderer::Clear(){
         glClear(GL_COLOR_BUFFER_BIT);
-    }
+    };
 };
