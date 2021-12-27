@@ -11,6 +11,7 @@ namespace NGine
 
         static void DrawTriangle();
         static void DrawTriangleLegacy(glm::vec2 position, float base, float height);
+        static void DrawSquare();
 
         static void Clear();
     };
