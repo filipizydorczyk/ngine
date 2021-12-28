@@ -29,8 +29,6 @@ Naming convention should follow this rules:
 
 3. Use **UPPERCASE** for all macros and defines
 
-If something is unclear just see files for reference.
-
 Always finish method implementations, classes declaration and namespaces with `;`
 
 ```c++
@@ -43,7 +41,11 @@ namespace NGine
 };
 ```
 
-Why? Idk it's just my thing and my project xD
+Why? Idk it's my project xD
+
+Try to name functions with max 3 words wit following pattern `ActionObjectModifier`. For example `DrawTriangleLegacy();`
+
+If something is unclear just see files for reference.
 
 ---
 
