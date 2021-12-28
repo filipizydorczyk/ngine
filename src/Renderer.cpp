@@ -32,8 +32,6 @@ namespace NGine
         glGenBuffers(1, &s_RendererData.triangleBuffer);
         glBindBuffer(GL_ARRAY_BUFFER, s_RendererData.triangleBuffer);
         glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), trianglePostitions, GL_STATIC_DRAW);
-        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
-        glEnableVertexAttribArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
 
         float squarePostitions[4 * 2] = {
@@ -51,14 +49,12 @@ namespace NGine
         glGenBuffers(1, &s_RendererData.squareVertexBuffer);
         glBindBuffer(GL_ARRAY_BUFFER, s_RendererData.squareVertexBuffer);
         glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(float), squarePostitions, GL_STATIC_DRAW);
-        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
-        glEnableVertexAttribArray(0);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
 
         glGenBuffers(1, &s_RendererData.squareIndexBuffer);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_RendererData.squareIndexBuffer);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), squareIndecies, GL_STATIC_DRAW);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
     };
 
     /**
@@ -68,7 +64,10 @@ namespace NGine
     void Renderer::DrawTriangle()
     {
         glBindBuffer(GL_ARRAY_BUFFER, s_RendererData.triangleBuffer);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
         glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDisableVertexAttribArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     };
 
@@ -97,9 +96,13 @@ namespace NGine
      * buffer.
      */
     void Renderer::DrawSquare(){
+        glBindBuffer(GL_ARRAY_BUFFER, s_RendererData.squareVertexBuffer);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_RendererData.squareIndexBuffer);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
 
     /**
