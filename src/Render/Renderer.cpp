@@ -1,6 +1,7 @@
 #include "./Renderer.h"
 #include "./VertexBuffer.h"
 #include "./ArrayBuffer.h"
+#include "./IndexBuffer.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
@@ -11,12 +12,11 @@ namespace NGine
 {
     struct RendererData
     {
-        unsigned int squareIndexBuffer;
-
         std::unique_ptr<NGine::VertexBuffer> triangleVertexBuffer = nullptr;
         std::unique_ptr<NGine::ArrayBuffer> triangleArrayBuffer = nullptr;
         
         std::unique_ptr<NGine::VertexBuffer> squareVertexBuffer = nullptr;
+        std::unique_ptr<NGine::IndexBuffer> squareIndexBuffer = nullptr;
         std::unique_ptr<NGine::ArrayBuffer> squareArrayBuffer = nullptr;
     };
 
@@ -66,11 +66,12 @@ namespace NGine
         glEnableVertexAttribArray(0);
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-        glGenBuffers(1, &s_RendererData.squareIndexBuffer);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_RendererData.squareIndexBuffer);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), squareIndecies, GL_STATIC_DRAW);
+        s_RendererData.squareIndexBuffer = std::make_unique<NGine::IndexBuffer>(
+            squareIndecies, 
+            6 * sizeof(unsigned int)
+        );
         
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        s_RendererData.squareIndexBuffer->Unbind();
         s_RendererData.squareVertexBuffer->Unbind();
         s_RendererData.squareArrayBuffer->Unbind();
     };
@@ -112,9 +113,9 @@ namespace NGine
      */
     void Renderer::DrawSquare(){
         s_RendererData.squareArrayBuffer->Bind();
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_RendererData.squareIndexBuffer);
+        s_RendererData.squareIndexBuffer->Bind();
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        s_RendererData.squareIndexBuffer->Unbind();
         s_RendererData.squareArrayBuffer->Unbind();
     };
 

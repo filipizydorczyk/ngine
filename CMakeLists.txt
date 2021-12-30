@@ -13,6 +13,7 @@ add_executable( ${PROJECT_NAME}
                 ${PROJECT_SOURCE_DIR}/src/Render/Renderer.cpp
                 ${PROJECT_SOURCE_DIR}/src/Render/VertexBuffer.cpp
                 ${PROJECT_SOURCE_DIR}/src/Render/ArrayBuffer.cpp
+                ${PROJECT_SOURCE_DIR}/src/Render/IndexBuffer.cpp
               )
 
 CPMAddPackage(
