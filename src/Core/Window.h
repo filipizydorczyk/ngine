@@ -4,7 +4,6 @@
 
 namespace NGine
 {
-
     class Window
     {
     public:

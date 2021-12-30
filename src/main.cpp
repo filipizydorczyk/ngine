@@ -1,8 +1,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "./Logger.h"
-#include "./Window.h"
-#include "./Application.h"
+#include "./Core/Logger.h"
+#include "./Core/Window.h"
+#include "./Core/Application.h"
 
 int main(void)
 {

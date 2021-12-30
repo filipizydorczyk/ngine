@@ -8,8 +8,8 @@ set(FETCHCONTENT_BASE_DIR ${PROJECT_SOURCE_DIR}/include)
 
 add_executable( ${PROJECT_NAME} 
                 ${PROJECT_SOURCE_DIR}/src/main.cpp 
-                ${PROJECT_SOURCE_DIR}/src/Window.cpp  
-                ${PROJECT_SOURCE_DIR}/src/Application.cpp 
+                ${PROJECT_SOURCE_DIR}/src/Core/Window.cpp  
+                ${PROJECT_SOURCE_DIR}/src/Core/Application.cpp 
                 ${PROJECT_SOURCE_DIR}/src/Render/Renderer.cpp
                 ${PROJECT_SOURCE_DIR}/src/Render/VertexBuffer.cpp
                 ${PROJECT_SOURCE_DIR}/src/Render/ArrayBuffer.cpp
