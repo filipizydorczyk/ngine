@@ -4,18 +4,19 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <stdint.h>
+#include <memory>
 
 namespace NGine
 {
     struct RendererData
     {
-        unsigned int triangleBuffer;
         unsigned int triangleVertexArray;
 
         unsigned int squareVertexBuffer;
         unsigned int squareVertexArrray;
         unsigned int squareIndexBuffer;
 
+        std::unique_ptr<NGine::VertexBuffer> triangleVertexBuffer = nullptr;
     };
 
     static RendererData s_RendererData;
@@ -36,14 +37,14 @@ namespace NGine
         glGenVertexArrays(1, &s_RendererData.triangleVertexArray);
         glBindVertexArray(s_RendererData.triangleVertexArray);
         
-        glGenBuffers(1, &s_RendererData.triangleBuffer);
-        glBindBuffer(GL_ARRAY_BUFFER, s_RendererData.triangleBuffer);
-        
-        glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), trianglePostitions, GL_STATIC_DRAW);
+        s_RendererData.triangleVertexBuffer = std::make_unique<NGine::VertexBuffer>(
+            trianglePostitions, 6
+        );
+
         glEnableVertexAttribArray(0);
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
         
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        s_RendererData.triangleVertexBuffer->Unbind();
         glBindVertexArray(0);
 
         float squarePostitions[4 * 2] = {
