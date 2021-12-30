@@ -12,11 +12,11 @@ namespace NGine
     {
         unsigned int triangleVertexArray;
 
-        unsigned int squareVertexBuffer;
         unsigned int squareVertexArrray;
         unsigned int squareIndexBuffer;
 
         std::unique_ptr<NGine::VertexBuffer> triangleVertexBuffer = nullptr;
+        std::unique_ptr<NGine::VertexBuffer> squareVertexBuffer = nullptr;
     };
 
     static RendererData s_RendererData;
@@ -62,10 +62,9 @@ namespace NGine
         glGenVertexArrays(1, &s_RendererData.squareVertexArrray);
         glBindVertexArray(s_RendererData.squareVertexArrray);
 
-        glGenBuffers(1, &s_RendererData.squareVertexBuffer);
-        glBindBuffer(GL_ARRAY_BUFFER, s_RendererData.squareVertexBuffer);
-        
-        glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(float), squarePostitions, GL_STATIC_DRAW);
+        s_RendererData.squareVertexBuffer = std::make_unique<NGine::VertexBuffer>(
+            squarePostitions, 8
+        );
 
         glEnableVertexAttribArray(0);
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
@@ -75,7 +74,7 @@ namespace NGine
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), squareIndecies, GL_STATIC_DRAW);
         
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        s_RendererData.squareVertexBuffer->Unbind();
         glBindVertexArray(0);
     };
 
