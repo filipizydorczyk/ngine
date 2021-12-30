@@ -23,7 +23,7 @@ namespace NGine
     static RendererData s_RendererData;
 
     /**
-     * This method needs to be run before any draw calls. Some functions may work without 
+     * @brief This method needs to be run before any draw calls. Some functions may work without 
      * initialization like (for example Renderer::DrawTriangleLegacy) but others wont
      * (like Renderer::DrawTriangle)
      */
@@ -76,7 +76,7 @@ namespace NGine
     };
 
     /**
-     * This function will draw a simple triangle usign modern opengl api. For now
+     * @brief This function will draw a simple triangle usign modern opengl api. For now
      * it uses only vertex buffer but will be refactored to using index buffer
      */
     void Renderer::DrawTriangle()
@@ -87,7 +87,7 @@ namespace NGine
     };
 
     /**
-     * This methond will draw a triangle. This is more for testing purposes
+     * @brief This methond will draw a triangle. This is more for testing purposes
      * at early stage than for actuall usage. Mayby in futere it will be removed
      * or refactored
      *
@@ -107,7 +107,7 @@ namespace NGine
     };
 
     /**
-     * Draws simple square. For now it's basic inmplementation with made with index
+     * @brief Draws simple square. For now it's basic inmplementation with made with index
      * buffer.
      */
     void Renderer::DrawSquare(){
@@ -119,7 +119,7 @@ namespace NGine
     };
 
     /**
-     * Just clears the screen from all redered stuff
+     * @brief Just clears the screen from all redered stuff
      */
     void Renderer::Clear(){
         glClear(GL_COLOR_BUFFER_BIT);
