@@ -3,7 +3,6 @@
 
 namespace NGine
 {
-
     class Renderer
     {
     public:

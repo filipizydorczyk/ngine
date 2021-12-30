@@ -1,5 +1,6 @@
 #include "./Renderer.h"
 #include "./VertexBuffer.h"
+#include "./ArrayBuffer.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
@@ -10,13 +11,13 @@ namespace NGine
 {
     struct RendererData
     {
-        unsigned int triangleVertexArray;
-
-        unsigned int squareVertexArrray;
         unsigned int squareIndexBuffer;
 
         std::unique_ptr<NGine::VertexBuffer> triangleVertexBuffer = nullptr;
+        std::unique_ptr<NGine::ArrayBuffer> triangleArrayBuffer = nullptr;
+        
         std::unique_ptr<NGine::VertexBuffer> squareVertexBuffer = nullptr;
+        std::unique_ptr<NGine::ArrayBuffer> squareArrayBuffer = nullptr;
     };
 
     static RendererData s_RendererData;
@@ -33,10 +34,8 @@ namespace NGine
              0.0f,  0.5f,
              0.5f, -0.5f
         };
-
-        glGenVertexArrays(1, &s_RendererData.triangleVertexArray);
-        glBindVertexArray(s_RendererData.triangleVertexArray);
         
+        s_RendererData.triangleArrayBuffer = std::make_unique<NGine::ArrayBuffer>();
         s_RendererData.triangleVertexBuffer = std::make_unique<NGine::VertexBuffer>(
             trianglePostitions, 6
         );
@@ -45,7 +44,7 @@ namespace NGine
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
         
         s_RendererData.triangleVertexBuffer->Unbind();
-        glBindVertexArray(0);
+        s_RendererData.triangleArrayBuffer->Unbind();
 
         float squarePostitions[4 * 2] = {
             -0.5f, -0.5f,
@@ -59,9 +58,7 @@ namespace NGine
             3, 0, 1
         };
 
-        glGenVertexArrays(1, &s_RendererData.squareVertexArrray);
-        glBindVertexArray(s_RendererData.squareVertexArrray);
-
+        s_RendererData.squareArrayBuffer = std::make_unique<NGine::ArrayBuffer>();
         s_RendererData.squareVertexBuffer = std::make_unique<NGine::VertexBuffer>(
             squarePostitions, 8
         );
@@ -75,7 +72,7 @@ namespace NGine
         
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
         s_RendererData.squareVertexBuffer->Unbind();
-        glBindVertexArray(0);
+        s_RendererData.squareArrayBuffer->Unbind();
     };
 
     /**
@@ -84,9 +81,9 @@ namespace NGine
      */
     void Renderer::DrawTriangle()
     {
-        glBindVertexArray(s_RendererData.triangleVertexArray);
+        s_RendererData.triangleArrayBuffer->Bind();
         glDrawArrays(GL_TRIANGLES, 0, 3);
-        glBindVertexArray(0);
+        s_RendererData.triangleArrayBuffer->Unbind();
     };
 
     /**
@@ -114,11 +111,11 @@ namespace NGine
      * buffer.
      */
     void Renderer::DrawSquare(){
-        glBindVertexArray(s_RendererData.squareVertexArrray);
+        s_RendererData.squareArrayBuffer->Bind();
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_RendererData.squareIndexBuffer);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-        glBindVertexArray(0);
+        s_RendererData.squareArrayBuffer->Unbind();
     };
 
     /**
