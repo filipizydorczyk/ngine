@@ -2,6 +2,7 @@
 #include "./VertexBuffer.h"
 #include "./ArrayBuffer.h"
 #include "./IndexBuffer.h"
+#include "./RenderCalls.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
@@ -83,7 +84,7 @@ namespace NGine
     void Renderer::DrawTriangle()
     {
         s_RendererData.triangleArrayBuffer->Bind();
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        RenderCalls::DrawArrays(0, 3);
         s_RendererData.triangleArrayBuffer->Unbind();
     };
 
@@ -114,7 +115,7 @@ namespace NGine
     void Renderer::DrawSquare(){
         s_RendererData.squareArrayBuffer->Bind();
         s_RendererData.squareIndexBuffer->Bind();
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+        RenderCalls::DrawIndexed(6);
         s_RendererData.squareIndexBuffer->Unbind();
         s_RendererData.squareArrayBuffer->Unbind();
     };
@@ -123,6 +124,6 @@ namespace NGine
      * @brief Just clears the screen from all redered stuff
      */
     void Renderer::Clear(){
-        glClear(GL_COLOR_BUFFER_BIT);
+        RenderCalls::Clear();
     };
 };
