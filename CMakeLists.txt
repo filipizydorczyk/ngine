@@ -15,6 +15,7 @@ add_executable( ${PROJECT_NAME}
                 ${PROJECT_SOURCE_DIR}/src/Render/ArrayBuffer.cpp
                 ${PROJECT_SOURCE_DIR}/src/Render/IndexBuffer.cpp
                 ${PROJECT_SOURCE_DIR}/src/Render/RenderCalls.cpp
+                ${PROJECT_SOURCE_DIR}/src/Render/Shader.cpp
               )
 
 CPMAddPackage(
