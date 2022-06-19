@@ -29,6 +29,15 @@ namespace NGine
         return id;
     };
 
+    /**
+     * @brief Construct a new Shader:: Shader object. It will create program and
+     * both fragment and vertex shaders. Then it will attach and link created
+     * shaders to created programs and delete those shaders. Also if shader
+     * compilarion will fail at runtime engine logger will log it as an error.
+     * 
+     * @param vertexSrc opengl source code for vertex shader
+     * @param fragmentSrc opengl source code for fragment shader
+     */
     Shader::Shader(const std::string& vertexSrc, const std::string& fragmentSrc){
         this->m_ProgramId = glCreateProgram();
         unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexSrc);
@@ -43,14 +52,27 @@ namespace NGine
         glDeleteShader(fs);
     };
 
+    /**
+     * @brief deletes created shader program
+     * 
+     */
     Shader::~Shader(){
         glDeleteProgram(this->m_ProgramId);
     };
 
+    /**
+     * @brief Bind will use program of created shader
+     * 
+     */
     void Shader::Bind() const {
         glUseProgram(this->m_ProgramId);
     };
 
+    /**
+     * @brief Bind will use program with id 0 which
+     * basically means unbinding shader program
+     * 
+     */
     void Shader::Unbind() const {
         glUseProgram(0);
     };
