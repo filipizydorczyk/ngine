@@ -1,4 +1,5 @@
 #include <glad/glad.h>
+#include <glm/glm.hpp>
 #include "../Core/Logger.h"
 #include "./Shader.h"
 
@@ -75,6 +76,11 @@ namespace NGine
      */
     void Shader::Unbind() const {
         glUseProgram(0);
+    };
+
+    void Shader::UploadUniformFloat4(const std::string& name, const glm::vec4& value){
+        u_int location = glGetUniformLocation(this->m_ProgramId, name.c_str());
+        glUniform4f(location, value.x, value.y, value.z, value.w);
     };
 
 };

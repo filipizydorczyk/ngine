@@ -1,3 +1,4 @@
+#include <glm/glm.hpp>
 #include "./Application.h"
 #include "./Window.h"
 #include "../Render/Renderer.h"
@@ -26,9 +27,11 @@ namespace NGine
 
             layout(location = 0) out vec4 color;
 
+            uniform vec4 u_Color;
+
             void main()
             {
-                color = vec4(0.8, 0.2, 0.3, 1.0);
+                color = u_Color;
             }
         )";
 
@@ -45,6 +48,7 @@ namespace NGine
         {
             Renderer::Clear();
             this->m_Shader->Bind();
+            this->m_Shader->UploadUniformFloat4("u_Color", glm::vec4(0.5f,1.0f,0.25f,1.0f));
             Renderer::DrawSquare();
             // Renderer::DrawTriangle();
             this->m_AppWindow->Update();

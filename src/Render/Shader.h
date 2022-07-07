@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <glm/glm.hpp>
 
 namespace NGine
 {
@@ -12,6 +13,8 @@ namespace NGine
 
         void Bind() const;
         void Unbind() const;
+
+        void UploadUniformFloat4(const std::string& name, const glm::vec4& value);
 
     private:
         unsigned int m_ProgramId;
