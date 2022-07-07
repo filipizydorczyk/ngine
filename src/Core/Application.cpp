@@ -44,16 +44,27 @@ namespace NGine
     {
         Renderer::Init();
 
+        float r = 0.0f;
+        float increment = 0.05f;
+
         while (!this->m_AppWindow->ShouldClose())
         {
             Renderer::Clear();
             this->m_Shader->Bind();
-            this->m_Shader->UploadUniformFloat4("u_Color", glm::vec4(0.5f,1.0f,0.25f,1.0f));
+            this->m_Shader->UploadUniformFloat4("u_Color", glm::vec4(r,1.0f,0.25f,1.0f));
             Renderer::DrawSquare();
             // Renderer::DrawTriangle();
             this->m_AppWindow->Update();
             this->m_Shader->Unbind();
             glfwPollEvents();
+
+            r += increment;
+            if(r > 1.0f){
+                increment = -0.05f;
+            }
+            else if(r < 0.0f){
+                increment = 0.05f;
+            }
         }
 
         this->m_AppWindow->Close();
