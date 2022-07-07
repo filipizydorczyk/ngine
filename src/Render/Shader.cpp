@@ -79,7 +79,11 @@ namespace NGine
     };
 
     void Shader::UploadUniformFloat4(const std::string& name, const glm::vec4& value){
-        u_int location = glGetUniformLocation(this->m_ProgramId, name.c_str());
+        int location = glGetUniformLocation(this->m_ProgramId, name.c_str());
+        if(location == -1){
+            NGINE_WARN("Uniform " + name + " doesn't exist!");
+        }
+
         glUniform4f(location, value.x, value.y, value.z, value.w);
     };
 
