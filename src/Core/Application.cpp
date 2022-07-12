@@ -50,9 +50,7 @@ namespace NGine
         while (!this->m_AppWindow->ShouldClose())
         {
             Renderer::Clear();
-            this->m_Shader->Bind();
-            this->m_Shader->UploadUniformFloat4("u_Color", glm::vec4(r,1.0f,0.25f,1.0f));
-            Renderer::DrawSquare();
+            Renderer::DrawSquare(this->m_Shader, glm::vec4(r,1.0f,0.25f,1.0f));
             // Renderer::DrawTriangle();
             this->m_AppWindow->Update();
             this->m_Shader->Unbind();

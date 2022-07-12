@@ -3,6 +3,7 @@
 #include "./ArrayBuffer.h"
 #include "./IndexBuffer.h"
 #include "./RenderCalls.h"
+#include "./Shader.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
@@ -92,10 +93,13 @@ namespace NGine
      * @brief Draws simple square. For now it's basic inmplementation with made with index
      * buffer.
      */
-    void Renderer::DrawSquare(){
+    void Renderer::DrawSquare(const std::unique_ptr<NGine::Shader>& shader, const glm::vec4& color){
         s_RendererData.squareArrayBuffer->Bind();
         s_RendererData.squareIndexBuffer->Bind();
+        shader->Bind();
+        shader->UploadUniformFloat4("u_Color", color);
         RenderCalls::DrawIndexed(6);
+        shader->Unbind();
         s_RendererData.squareIndexBuffer->Unbind();
         s_RendererData.squareArrayBuffer->Unbind();
     };

@@ -6,7 +6,7 @@
 namespace NGine
 {
 
-    static unsigned int CompileShader(unsigned int type, const std::string& sourceString){
+    static unsigned int CompileShader(unsigned int type, const std::string& sourceString) {
         unsigned int id = glCreateShader(type);
         const char* src = sourceString.c_str();
         glShaderSource(id, 1, &src, nullptr);
@@ -39,7 +39,7 @@ namespace NGine
      * @param vertexSrc opengl source code for vertex shader
      * @param fragmentSrc opengl source code for fragment shader
      */
-    Shader::Shader(const std::string& vertexSrc, const std::string& fragmentSrc){
+    Shader::Shader(const std::string& vertexSrc, const std::string& fragmentSrc) {
         this->m_ProgramId = glCreateProgram();
         unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexSrc);
         unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentSrc);
@@ -78,7 +78,7 @@ namespace NGine
         glUseProgram(0);
     };
 
-    void Shader::UploadUniformFloat4(const std::string& name, const glm::vec4& value){
+    void Shader::UploadUniformFloat4(const std::string& name, const glm::vec4& value) {
         int location = glGetUniformLocation(this->m_ProgramId, name.c_str());
         if(location == -1){
             NGINE_WARN("Uniform " + name + " doesn't exist!");
