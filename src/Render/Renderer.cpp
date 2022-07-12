@@ -82,10 +82,13 @@ namespace NGine
      * @brief This function will draw a simple triangle usign modern opengl api. For now
      * it uses only vertex buffer but will be refactored to using index buffer
      */
-    void Renderer::DrawTriangle()
+    void Renderer::DrawTriangle(const std::unique_ptr<NGine::Shader>& shader, const glm::vec4& color)
     {
         s_RendererData.triangleArrayBuffer->Bind();
+        shader->Bind();
+        shader->UploadUniformFloat4("u_Color", color);
         RenderCalls::DrawArrays(0, 3);
+        shader->Unbind();
         s_RendererData.triangleArrayBuffer->Unbind();
     };
 

@@ -51,7 +51,7 @@ namespace NGine
         {
             Renderer::Clear();
             Renderer::DrawSquare(this->m_Shader, glm::vec4(r,1.0f,0.25f,1.0f));
-            // Renderer::DrawTriangle();
+            Renderer::DrawTriangle(this->m_Shader, glm::vec4(r,0.20f,1.0f,1.0f));
             this->m_AppWindow->Update();
             this->m_Shader->Unbind();
             glfwPollEvents();
