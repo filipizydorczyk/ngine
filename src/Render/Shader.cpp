@@ -1,5 +1,6 @@
 #include <glad/glad.h>
 #include <glm/glm.hpp>
+#include <glm/ext.hpp>
 #include "../Core/Logger.h"
 #include "./Shader.h"
 
@@ -79,12 +80,30 @@ namespace NGine
     };
 
     void Shader::UploadUniformFloat4(const std::string& name, const glm::vec4& value) {
+        int location = this->GetLocation(name);
+
+        glUniform4f(location, value.x, value.y, value.z, value.w);
+    };
+
+    void Shader::UploadUniformFloat3(const std::string& name, const glm::vec3& value) {
+        int location = this->GetLocation(name);
+
+        glUniform3f(location, value.x, value.y, value.z);
+    };
+
+    void Shader::UploadUniformMat4(const std::string& name, const glm::mat4& matrix) {
+		int location = this->GetLocation(name);
+        
+        glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+	}
+
+    int Shader::GetLocation(const std::string& name) {
         int location = glGetUniformLocation(this->m_ProgramId, name.c_str());
         if(location == -1){
             NGINE_WARN("Uniform " + name + " doesn't exist!");
         }
 
-        glUniform4f(location, value.x, value.y, value.z, value.w);
-    };
+        return location;
+    }
 
 };

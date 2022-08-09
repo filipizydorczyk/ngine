@@ -16,9 +16,12 @@ namespace NGine
 
             layout(location = 0) in vec3 a_Position;
 
+            uniform mat4 u_ViewProjection;
+            uniform mat4 u_Transform;
+
             void main()
             {
-                gl_Position = vec4(a_Position, 1.0);
+                gl_Position = u_Transform * vec4(a_Position, 1.0);
             }
         )";
 
@@ -50,8 +53,8 @@ namespace NGine
         while (!this->m_AppWindow->ShouldClose())
         {
             Renderer::Clear();
-            Renderer::DrawSquare(this->m_Shader, glm::vec4(r,1.0f,0.25f,1.0f));
-            Renderer::DrawTriangle(this->m_Shader, glm::vec4(r,0.20f,1.0f,1.0f));
+            Renderer::DrawSquare(this->m_Shader, glm::vec4(r,1.0f,0.25f,1.0f), glm::vec2(0.5f,0.5f));
+            Renderer::DrawTriangle(this->m_Shader, glm::vec4(r,0.20f,1.0f,1.0f), glm::vec2(0.25f,0.125f));
             this->m_AppWindow->Update();
             this->m_Shader->Unbind();
             glfwPollEvents();

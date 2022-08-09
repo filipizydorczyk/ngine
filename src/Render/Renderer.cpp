@@ -7,6 +7,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
+#include <glm/ext.hpp>
 #include <stdint.h>
 #include <memory>
 
@@ -82,11 +83,14 @@ namespace NGine
      * @brief This function will draw a simple triangle usign modern opengl api. For now
      * it uses only vertex buffer but will be refactored to using index buffer
      */
-    void Renderer::DrawTriangle(const std::unique_ptr<NGine::Shader>& shader, const glm::vec4& color)
+    void Renderer::DrawTriangle(const std::unique_ptr<NGine::Shader>& shader, const glm::vec4& color, const glm::vec2& position)
     {
+        glm::mat4 transform = glm::translate(glm::mat4(1.0f), { position.x, position.y, 0 });
+
         s_RendererData.triangleArrayBuffer->Bind();
         shader->Bind();
         shader->UploadUniformFloat4("u_Color", color);
+        shader->UploadUniformMat4("u_Transform", transform);
         RenderCalls::DrawArrays(0, 3);
         shader->Unbind();
         s_RendererData.triangleArrayBuffer->Unbind();
@@ -96,11 +100,15 @@ namespace NGine
      * @brief Draws simple square. For now it's basic inmplementation with made with index
      * buffer.
      */
-    void Renderer::DrawSquare(const std::unique_ptr<NGine::Shader>& shader, const glm::vec4& color){
+    void Renderer::DrawSquare(const std::unique_ptr<NGine::Shader>& shader, const glm::vec4& color, const glm::vec2& position){
+        // glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+        glm::mat4 transform = glm::translate(glm::mat4(1.0f), { position.x, position.y, 0 });
+        
         s_RendererData.squareArrayBuffer->Bind();
         s_RendererData.squareIndexBuffer->Bind();
         shader->Bind();
         shader->UploadUniformFloat4("u_Color", color);
+        shader->UploadUniformMat4("u_Transform", transform);
         RenderCalls::DrawIndexed(6);
         shader->Unbind();
         s_RendererData.squareIndexBuffer->Unbind();
