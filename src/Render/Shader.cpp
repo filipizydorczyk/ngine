@@ -7,20 +7,21 @@
 namespace NGine
 {
 
-    static unsigned int CompileShader(unsigned int type, const std::string& sourceString) {
+    static unsigned int CompileShader(unsigned int type, const std::string &sourceString)
+    {
         unsigned int id = glCreateShader(type);
-        const char* src = sourceString.c_str();
+        const char *src = sourceString.c_str();
         glShaderSource(id, 1, &src, nullptr);
         glCompileShader(id);
-
 
         int result;
         glGetShaderiv(id, GL_COMPILE_STATUS, &result);
 
-        if(!result){
+        if (!result)
+        {
             int length;
             glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
-            char* message = (char*)alloca(length * sizeof(char));
+            char *message = (char *)alloca(length * sizeof(char));
             glGetShaderInfoLog(id, length, &length, message);
             NGINE_ERROR(message);
 
@@ -36,11 +37,12 @@ namespace NGine
      * both fragment and vertex shaders. Then it will attach and link created
      * shaders to created programs and delete those shaders. Also if shader
      * compilarion will fail at runtime engine logger will log it as an error.
-     * 
+     *
      * @param vertexSrc opengl source code for vertex shader
      * @param fragmentSrc opengl source code for fragment shader
      */
-    Shader::Shader(const std::string& vertexSrc, const std::string& fragmentSrc) {
+    Shader::Shader(const std::string &vertexSrc, const std::string &fragmentSrc)
+    {
         this->m_ProgramId = glCreateProgram();
         unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexSrc);
         unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentSrc);
@@ -56,54 +58,62 @@ namespace NGine
 
     /**
      * @brief deletes created shader program
-     * 
+     *
      */
-    Shader::~Shader(){
+    Shader::~Shader()
+    {
         glDeleteProgram(this->m_ProgramId);
     };
 
     /**
      * @brief Bind will use program of created shader
-     * 
+     *
      */
-    void Shader::Bind() const {
+    void Shader::Bind() const
+    {
         glUseProgram(this->m_ProgramId);
     };
 
     /**
      * @brief Bind will use program with id 0 which
      * basically means unbinding shader program
-     * 
+     *
      */
-    void Shader::Unbind() const {
+    void Shader::Unbind() const
+    {
         glUseProgram(0);
     };
 
-    void Shader::UploadUniformFloat4(const std::string& name, const glm::vec4& value) {
+    void Shader::UploadUniformFloat4(const std::string &name, const glm::vec4 &value)
+    {
         int location = this->GetLocation(name);
 
         glUniform4f(location, value.x, value.y, value.z, value.w);
     };
 
-    void Shader::UploadUniformFloat3(const std::string& name, const glm::vec3& value) {
+    void Shader::UploadUniformFloat3(const std::string &name, const glm::vec3 &value)
+    {
         int location = this->GetLocation(name);
 
         glUniform3f(location, value.x, value.y, value.z);
     };
 
-    void Shader::UploadUniformMat4(const std::string& name, const glm::mat4& matrix) {
-		int location = this->GetLocation(name);
-        
-        glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
-	}
+    void Shader::UploadUniformMat4(const std::string &name, const glm::mat4 &matrix)
+    {
+        int location = this->GetLocation(name);
 
-    int Shader::GetLocation(const std::string& name) {
+        glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+    };
+
+    int Shader::GetLocation(const std::string &name)
+    {
         int location = glGetUniformLocation(this->m_ProgramId, name.c_str());
-        if(location == -1){
+        if (location == -1)
+        {
             NGINE_WARN("Uniform " + name + " doesn't exist!");
         }
 
         return location;
-    }
+    };
 
 };
